@@ -1,0 +1,3 @@
+Get MPI 3.0 running inside Docker:
+docker run --cap-add=SYS_PTRACE
+https://github.com/open-mpi/ompi/issues/4948
