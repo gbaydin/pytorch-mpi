@@ -18,11 +18,11 @@ RUN wget -O ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 
-ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
-ENV NO_CUDA=1
-
+# ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
 RUN conda install numpy pyyaml mkl mkl-include setuptools cmake cffi typing
-RUN conda install -c mingfeima mkldnn
+# RUN conda install -c mingfeima mkldnn
 
-RUN cd /code && git clone -b v0.4.1 --recursive https://github.com/pytorch/pytorch
+RUN cd /code && git clone --recursive -b v1.0.0 https://github.com/pytorch/pytorch
+ENV CMAKE_PREFIX_PATH=/opt/conda/bin/
+ENV NO_CUDA=1
 RUN cd /code/pytorch && python setup.py install
